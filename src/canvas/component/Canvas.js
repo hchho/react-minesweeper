@@ -5,7 +5,7 @@ import { Controller } from '../../controller'
 const Timer = ({ endGame }) => {
   const [count, setCount] = useState(0)
   setTimeout(() => { setCount(count + 1) }, 1000)
-  if (count === 20) endGame()
+  if (count === 180) endGame()
   return (
     <div>
       {count}

@@ -1,11 +1,13 @@
-import { SET_CONFIG } from '../actions'
+import {
+  SET_CONFIG
+} from '../actions'
 
 export const gameConfig = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SET_CONFIG:
       return {
         ...state,
-        config: {
+        ...{
           size: {
             columns: 10,
             rows: 10
@@ -13,7 +15,7 @@ export const gameConfig = (state = {}, action) => {
           mines: 15
         }
       }
-    default:
-      return state
+      default:
+        return state
   }
 }

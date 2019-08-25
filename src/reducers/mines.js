@@ -4,28 +4,31 @@ import gameConfig from '../game-config'
 const generateRandomLocation = max => {
   const x = Math.floor(Math.random() * Math.floor(max))
   const y = Math.floor(Math.random() * Math.floor(max))
-  return `R${x}C${y}`
+  return {
+    x,
+    y
+  }
 }
 
 const createMineMap = config => {
-  const mineMap = {}
+  const mineMap = []
   let randomLocation = ''
-  while (Object.keys(mineMap).length < config.mines) {
+  while (mineMap.length < gameConfig.mines) {
     randomLocation = generateRandomLocation(config.size.rows)
-    if (!mineMap[randomLocation]) {
-      mineMap[randomLocation] = randomLocation
+    if (!mineMap.find(elem => elem.x === randomLocation.x && elem.y === randomLocation.y)) {
+      mineMap.push(randomLocation)
     }
   }
   return mineMap
 }
 
-export const generateMines = (state = {}, action) => {
+export const generateMines = (state = [], action) => {
   switch(action.type) {
     case GENERATE_MINES:
-      return {
+      return [
         ...state,
-        mines: createMineMap(gameConfig)
-      }
+        ...createMineMap(gameConfig)
+      ]
     default: 
       return state
   }

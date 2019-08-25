@@ -3,7 +3,7 @@ const config = {
     rows: 10,
     columns: 10,
   },
-  mines: 10,
+  mines: 20,
 }
 
 export default config
