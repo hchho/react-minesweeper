@@ -1,16 +1,10 @@
-import {
-  generateMines
-} from './mines'
+import { initialState } from './initialState'
+import { generateMines } from './mines'
+import { setConfig } from './gameConfig'
 
-export const reducers = (state = {}, action) => {
+export const reducers = (state = initialState, action) => {
   return {
-    mineMap: generateMines(state.mines, action),
-    gameConfig: {
-      size: {
-        columns: 10,
-        rows: 10
-      },
-      mines: 15
-    }
+    mineMap: generateMines(state, action),
+    gameConfig: setConfig(state.gameConfig, action)
   }
 }

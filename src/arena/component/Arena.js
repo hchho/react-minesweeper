@@ -4,16 +4,14 @@ import '../styles/Arena.scss'
 
 const Row = ({ columns, handleSquareClick, mines = [], row }) => {
   const countAdjacentMines = (xCoord, yCoord) => mines.reduce((acc, val) => {
-    if (yCoord + 1 === val.y || yCoord - 1 === val.y) {
-      if (Math.abs(xCoord - val.x) === 1) {
-        return ++acc
-      }
-      return xCoord === val.x ? ++acc : acc
-    } else if (yCoord === val.y) {
-      return Math.abs(xCoord - val.x) === 1 ? ++acc : acc
+    if (Math.abs(yCoord - val.y) === 1 && Math.abs(xCoord - val.x) === 1) {
+      return ++acc
+    } else if ((yCoord === val.y && Math.abs(xCoord - val.x) === 1) || (Math.abs(yCoord - val.y) === 1 && xCoord === val.x)) {
+      return ++acc
     }
     return acc
   }, 0)
+  
   const hasMines = (xCoord, yCoord) => !!mines.find(e => e.x === xCoord && e.y === yCoord)
   
   return (

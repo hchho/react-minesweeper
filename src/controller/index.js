@@ -1,1 +1,1 @@
-export { default as Controller } from './component/Controller'
+export { default as Controller } from './container/Controller'
