@@ -5,6 +5,10 @@ export const initialState = {
       rows: 0,
       columns: 0
     },
-    mines: 0
+    mines: 0,
+    timeLimit: 0
+  },
+  gameState: {
+    isActive: false
   }
 }

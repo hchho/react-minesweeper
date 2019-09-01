@@ -1,17 +1,11 @@
 import {
-  START_GAME,
-  END_GAME,
   GENERATE_MINES,
-  SET_CONFIG
+  SET_CONFIG,
+  SET_GAME_STATE
 } from './actionTypes'
 
-export const startGame = isActive => ({
-  type: START_GAME,
-  isActive
-})
-
-export const endGame = isActive => ({
-  type: END_GAME,
+export const setGameState = isActive => ({
+  type: SET_GAME_STATE,
   isActive
 })
 

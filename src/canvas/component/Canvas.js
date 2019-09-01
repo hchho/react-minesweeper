@@ -1,30 +1,17 @@
-import React, { useState } from 'react'
-import Arena from '../../arena/container/Arena'
+import React from 'react'
+import { Arena } from '../../arena'
 import { Controller } from '../../controller'
+import { Timer } from '../../timer'
 
-const Timer = ({ endGame }) => {
-  const [count, setCount] = useState(0)
-  setTimeout(() => { setCount(count + 1) }, 1000)
-  if (count === 180) endGame()
-  return (
-    <div>
-      {count}
-    </div>
-  )
-}
-
-const Canvas = () => {
-  const [isGameActive, setIsGameActive] = useState(false)
-  const startGame = () => {
-    setIsGameActive(true)
-  }
-  const endGame = () => {
-    setIsGameActive(false)
-  }
+const Canvas = ({ startGame, endGame, isGameActive}) => {
   return (
   <div className="game-canvas">
-    {isGameActive ? <Timer endGame={endGame} /> : <Controller startGame={startGame} />}
-    {isGameActive && <Arena />}
+    {isGameActive ? [
+      <Timer endGame={endGame} />,
+      <Arena />
+     ] : 
+      <Controller startGame={startGame} />
+    }
   </div>
 )}
 
