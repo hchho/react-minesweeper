@@ -1,24 +1,3 @@
 .app-arena__row {
   display: flex;
 }
-
-.app-arena__square {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  width: 30px;
-  cursor: default;
-}
-
-.app-arena__square--empty {
-  background-color: grey;
-}
-
-.app-arena__square--hasMine {
-  background-color: red;
-}
-
-.app-arena__square--hidden {
-  background-color: black;
-}

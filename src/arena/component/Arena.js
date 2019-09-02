@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Square from './Square'
+import { Square } from '../../square'
 import '../styles/Arena.scss'
 
 const Row = ({ columns, handleSquareClick, mines = [], row }) => {
