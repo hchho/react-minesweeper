@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { SET_CONFIG } from '../../actions'
+import { setConfig } from '../../actions'
 import Controller from '../component/Controller'
 
 const DEFAULT_DIMENSIONS = 10
@@ -13,17 +13,15 @@ const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
   generateConfig: level => {
     const parsedLevel = parseInt(level)
-    dispatch({ 
-      type: SET_CONFIG, 
-      config: {
-        size: {
-          rows: DEFAULT_DIMENSIONS * parsedLevel,
-          columns: DEFAULT_DIMENSIONS * parsedLevel
-        },
-        mines: DEFAULT_MINES * parsedLevel,
-        timeLimit: DEFAULT_TIME_IN_MS * parsedLevel
-      }
-    })
+    const config = {
+      size: {
+        rows: DEFAULT_DIMENSIONS * parsedLevel,
+        columns: DEFAULT_DIMENSIONS * parsedLevel
+      },
+      mines: DEFAULT_MINES * parsedLevel,
+      timeLimit: DEFAULT_TIME_IN_MS * parsedLevel
+    }
+    dispatch(setConfig(config))
   }
 })
 

@@ -6,17 +6,13 @@ const Square = ({ hasMine, onClick, adjacentMines }) => {
     onClick()
     setIsRevealed(true) 
   }
-  const revealedColor = hasMine ? 'red' : 'grey'
+  const revealedClass = hasMine ? 'hasMine' : 'empty'
   return (
     <div
-      className='app-arena__square'
+      className={`app-arena__square app-arena__square--${isRevealed ? revealedClass : 'hidden'}`}
       onClick={!isRevealed && handleClick}
-      style={{
-        backgroundColor: isRevealed ? revealedColor : 'black',
-        cursor: 'default'
-      }}
     >
-    {isRevealed && !hasMine && adjacentMines && adjacentMines}
+    {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>
   )
 }

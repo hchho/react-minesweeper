@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { SET_GAME_STATE } from '../../actions'
+import { setGameState } from '../../actions'
 import Canvas from '../component/Canvas'
 
 const mapStateToProps = state => ({
@@ -7,8 +7,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  startGame: () => dispatch({ type: SET_GAME_STATE, isActive: true}),
-  endGame: () => dispatch({ type: SET_GAME_STATE, isActive: false})
+  startGame: () => dispatch(setGameState(true)),
+  endGame: () => dispatch(setGameState(false))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Canvas)
