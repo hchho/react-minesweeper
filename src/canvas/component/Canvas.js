@@ -4,16 +4,19 @@ import { Controller } from '../../controller'
 import { Timer } from '../../timer'
 import { isGameActive } from '../../utils'
 
-const Canvas = ({ startGame, endGame, gameStatus}) => {
+const ActiveCanvas = ({ endGame }) => (
+  <>
+    <Timer endGame={endGame} />
+    <Arena />
+  </>
+)
+
+const Canvas = ({ startGame, endGame, gameStatus }) => {
   return (
-  <div className="game-canvas">
-    {isGameActive(gameStatus) ? [
-      <Timer endGame={endGame} />,
-      <Arena />
-     ] : 
-      <Controller startGame={startGame} />
-    }
-  </div>
-)}
+    <div className="game-canvas">
+      {isGameActive(gameStatus) ? <ActiveCanvas endGame={endGame} /> :<Controller startGame={startGame} />}
+    </div>
+  )
+}
 
 export default Canvas
