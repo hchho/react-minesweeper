@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
+import { isGameActive, isGamePaused } from '../../utils'
 
 const SECOND_IN_MS = 1000 
 
-const Timer = ({ endGame, timeLimit }) => {
+const Timer = ({ endGame, gameStatus, timeLimit }) => {
   const [count, setCount] = useState(0)
-  setTimeout(() => { setCount(count + SECOND_IN_MS) }, SECOND_IN_MS)
+
+  setTimeout(() => { 
+    if (isGameActive(gameStatus) && !isGamePaused(gameStatus)) {
+      setCount(count + SECOND_IN_MS) 
+    }
+  }, SECOND_IN_MS)
+
   if (count === timeLimit) endGame()
+  
   return (
     <div>
       {count / SECOND_IN_MS}

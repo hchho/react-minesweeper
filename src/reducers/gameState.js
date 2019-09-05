@@ -5,7 +5,7 @@ export const setGameState = (state, action) => {
     case SET_GAME_STATE:
       return {
         ...state.gameState,
-        isActive: action.isActive
+        status: action.status
       }
     default:
       return state.gameState

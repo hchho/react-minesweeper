@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
 import '../styles/Square.scss'
+import { isGameRunning } from '../../utils'
 
-const Square = ({ endGame, hasMine, onClick, adjacentMines }) => {
+const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGame }) => {
   const [isRevealed, setIsRevealed] = useState(false)
 
   const revealedClass = hasMine ? 'hasMine' : 'empty'
 
   const handleClick = () => { 
+    if (!isGameRunning(gameStatus)) return
+    
     onClick()
     setIsRevealed(true) 
-    handleEndGame()
+    
+    if (hasMine) {
+      pauseGame()
+      handleEndGame()
+    }
   }
 
   const handleEndGame = () => {
@@ -19,7 +26,7 @@ const Square = ({ endGame, hasMine, onClick, adjacentMines }) => {
   return (
     <div
       className={`app-arena__square app-arena__square--${isRevealed ? revealedClass : 'hidden'}`}
-      onClick={!isRevealed && handleClick}
+      onClick={isRevealed ? undefined: handleClick}
     >
     {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>

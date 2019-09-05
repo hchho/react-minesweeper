@@ -4,9 +4,9 @@ import {
   SET_GAME_STATE
 } from './actionTypes'
 
-export const setGameState = isActive => ({
+export const setGameState = status => ({
   type: SET_GAME_STATE,
-  isActive
+  status
 })
 
 export const generateMines = mines => ({

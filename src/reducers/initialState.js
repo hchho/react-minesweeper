@@ -1,3 +1,5 @@
+import { INACTIVE_GAME_STATUS } from '../utils'
+
 export const initialState = {
   mineMap: [],
   gameConfig: {
@@ -9,6 +11,6 @@ export const initialState = {
     timeLimit: 0
   },
   gameState: {
-    isActive: false
+    status: INACTIVE_GAME_STATUS
   }
 }
