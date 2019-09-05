@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { isGameActive, isGamePaused } from '../../utils'
+import '../styles/Timer.scss'
 
 const SECOND_IN_MS = 1000 
 
@@ -15,7 +16,7 @@ const Timer = ({ endGame, gameStatus, timeLimit }) => {
   if (count === timeLimit) endGame()
   
   return (
-    <div>
+    <div className='timer--counter'>
       {count / SECOND_IN_MS}
     </div>
   )
