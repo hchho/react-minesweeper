@@ -1,5 +1,5 @@
 import React from 'react'
-import Canvas from './canvas/container/Canvas'
+import Canvas from './canvas'
 import './App.scss'
 
 function App() {

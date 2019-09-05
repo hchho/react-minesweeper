@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Square } from '../../square'
 import '../styles/Arena.scss'
 
-const Row = ({ columns, handleSquareClick, mines = [], row }) => {
+const Row = ({ columns, mines = [], row }) => {
   const countAdjacentMines = (xCoord, yCoord) => mines.reduce((acc, val) => {
     if (Math.abs(yCoord - val.y) === 1 && Math.abs(xCoord - val.x) === 1) {
       return ++acc
@@ -19,7 +19,6 @@ const Row = ({ columns, handleSquareClick, mines = [], row }) => {
     <Square 
     key={index} 
     hasMine={hasMines(index, row)} 
-    onClick={handleSquareClick} 
     adjacentMines={countAdjacentMines(index, row)} 
     />
   )}</div>
@@ -28,13 +27,9 @@ const Row = ({ columns, handleSquareClick, mines = [], row }) => {
 const Arena = ({ createSquares, generateMines, gameConfig: { size: { rows, columns } }, mines }) => {
   useEffect(() => { generateMines() }, [])
   const squares = createSquares(rows, columns)
-  const [revealedSquares, setRevealedSquares] = useState(0)
-  const handleSquareClick = () => {
-    setRevealedSquares(revealedSquares + 1)
-  }
   return (
   <div className="game-arena">
-    {squares.map((elem, index) => <Row columns={elem} key={index} mines={mines} handleSquareClick={handleSquareClick} row={index} />)}
+    {squares.map((elem, index) => <Row columns={elem} key={index} mines={mines} row={index} />)}
   </div>
 )}
 
