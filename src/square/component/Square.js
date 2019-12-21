@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import '../styles/Square.scss'
 import { isGameRunning } from '../../utils'
 
-const Square = ({ adjacentMines, endGame, hasMine, gameStatus, pauseGame }) => {
+const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGame }, ref) => {
   const [isRevealed, setIsRevealed] = useState(false)
-
   const revealedClass = hasMine ? 'hasMine' : 'empty'
 
-  const handleClick = () => {
-    if (!isGameRunning(gameStatus)) return
-    setIsRevealed(true)
-
+  const handleClick = () => { 
+    if (isRevealed && !isGameRunning(gameStatus)) return undefined
+    
+    setIsRevealed(true) 
+    
     if (hasMine) {
       pauseGame()
       handleEndGame()
     }
   }
+
+  useImperativeHandle(ref, () => ({
+    revealSquare: handleClick
+  }))
 
   const handleEndGame = () => {
     setTimeout(() => endGame(), 2000)
@@ -24,11 +28,11 @@ const Square = ({ adjacentMines, endGame, hasMine, gameStatus, pauseGame }) => {
   return (
     <div
       className={`app-arena__square app-arena__square--${isRevealed ? revealedClass : 'hidden'}`}
-      onClick={isRevealed ? undefined : handleClick}
+      onClick={onClick}
     >
       {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>
   )
 }
 
-export default Square
+export default forwardRef(Square)
