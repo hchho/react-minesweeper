@@ -1,1 +1,1 @@
-export { default as Arena } from './container/Arena'
+export { default as Arena } from './Arena.container'

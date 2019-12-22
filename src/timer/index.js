@@ -1,1 +1,1 @@
-export { default as Timer } from './container/Timer'
+export { default as Timer } from './Timer.container'

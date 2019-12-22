@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
-import '../styles/Square.scss'
-import { isGameRunning } from '../../utils'
+import './Square.scss'
+import { isGameRunning } from '../utils'
 
 const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGame }, ref) => {
   const [isRevealed, setIsRevealed] = useState(false)

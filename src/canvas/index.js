@@ -1,1 +1,1 @@
-export { default as Canvas } from './container/Canvas'
+export { default as Canvas } from './Canvas.container'

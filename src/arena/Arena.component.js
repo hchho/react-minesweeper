@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useRef } from 'react'
-import { Square } from '../../square'
-import '../styles/Arena.scss'
+import { Square } from '../square'
+import './Arena.scss'
 
 const Row = ({ columns, mines = [], row }) => {
   

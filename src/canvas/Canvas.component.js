@@ -1,9 +1,9 @@
 import React from 'react'
-import { Arena } from '../../arena'
-import { Controller } from '../../controller'
-import { Timer } from '../../timer'
-import { isGameActive } from '../../utils'
-import '../styles/Canvas.scss'
+import { Arena } from '../arena'
+import { Controller } from '../controller'
+import { Timer } from '../timer'
+import { isGameActive } from '../utils'
+import './Canvas.scss'
 
 const ActiveCanvas = ({ endGame }) => (
   <div className='canvas__active-container'>

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { setGameState } from '../../actions'
-import Canvas from '../component/Canvas'
-import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from '../../utils'
+import { setGameState } from '../actions'
+import Canvas from './Canvas.component'
+import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from '../utils'
 
 const mapStateToProps = state => ({
   gameStatus: state.gameState.status

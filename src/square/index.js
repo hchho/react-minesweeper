@@ -1,1 +1,1 @@
-export { default as Square } from './container/Square'
+export { default as Square } from './Square.container'

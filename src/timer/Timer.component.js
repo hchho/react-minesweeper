@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { isGameActive, isGamePaused } from '../../utils'
-import '../styles/Timer.scss'
+import { isGameActive, isGamePaused } from '../utils'
+import './Timer.scss'
 
 const SECOND_IN_MS = 1000 
 
