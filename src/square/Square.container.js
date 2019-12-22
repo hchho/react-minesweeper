@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setGameState } from '../actions'
+import { setGameState } from '../redux'
 import Square from './Square.component'
 import { INACTIVE_GAME_STATUS, ACTIVE_PAUSED_GAME_STATUS } from '../utils'
 

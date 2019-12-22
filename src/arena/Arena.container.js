@@ -1,5 +1,5 @@
 import Arena from './Arena.component'
-import { GENERATE_MINES } from '../actions'
+import { GENERATE_MINES } from '../redux'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {

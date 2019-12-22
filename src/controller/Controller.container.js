@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setConfig } from '../actions'
+import { setConfig } from '../redux'
 import Controller from './Controller.component'
 
 const DEFAULT_DIMENSIONS = 10

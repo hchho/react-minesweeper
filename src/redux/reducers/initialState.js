@@ -1,4 +1,4 @@
-import { INACTIVE_GAME_STATUS } from '../utils'
+import { INACTIVE_GAME_STATUS } from '../../utils'
 
 export const initialState = {
   mineMap: [],

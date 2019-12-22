@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setGameState } from '../actions'
+import { setGameState } from '../redux'
 import Canvas from './Canvas.component'
 import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from '../utils'
 
