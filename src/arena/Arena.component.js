@@ -51,7 +51,7 @@ const Arena = ({
 
   useEffect(() => {
     generateMines();
-  }, []);
+  }, [generateMines]);
 
   return (
     <div className="game-arena">

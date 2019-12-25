@@ -19,14 +19,14 @@ const InactiveController = ({ onChange, onClick }) => (
   </form>
 );
 
-const Controller = ({ endGame, gameStatus, generateConfig, startGame }) => {
+const Controller = ({ endGame, gameStatus, generateConfigWithLevel, startGame }) => {
   const [level, setLevel] = useState("1");
   const onChange = event => {
     setLevel(event.target.value);
   };
 
   const handleOnClick = () => {
-    generateConfig(level);
+    generateConfigWithLevel(level);
     startGame();
   };
 

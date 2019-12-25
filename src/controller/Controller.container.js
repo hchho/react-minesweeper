@@ -3,28 +3,14 @@ import { clearSquares, setConfig, setGameState } from '../redux'
 import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from '../utils'
 import Controller from './Controller.component'
 
-const DEFAULT_DIMENSIONS = 10
-
-const DEFAULT_MINES = 10
-
-const DEFAULT_TIME_IN_MS = 120000
-
 const mapStateToProps = state => ({
   gameStatus: state.gameState.status
 })
 
 const mapDispatchToProps = dispatch => ({
-  generateConfig: level => {
+  generateConfigWithLevel: level => {
     const parsedLevel = parseInt(level)
-    const config = {
-      size: {
-        rows: DEFAULT_DIMENSIONS * parsedLevel,
-        columns: DEFAULT_DIMENSIONS * parsedLevel
-      },
-      mines: DEFAULT_MINES * parsedLevel,
-      timeLimit: DEFAULT_TIME_IN_MS * parsedLevel
-    }
-    dispatch(setConfig(config))
+    dispatch(setConfig(parsedLevel))
   },
   endGame: () => {
     dispatch(setGameState(INACTIVE_GAME_STATUS))

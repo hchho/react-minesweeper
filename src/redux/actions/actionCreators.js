@@ -2,8 +2,8 @@ import {
   CLEAR_SQUARES,
   GENERATE_MINES,
   REVEAL_SQUARE,
-  SET_CONFIG,
   SET_GAME_STATE,
+  SET_LEVEL,
 } from './actionTypes'
 
 export const clearSquares = () => ({
@@ -20,9 +20,9 @@ export const revealSquare = square => ({
   square
 })
 
-export const setConfig = config => ({
-  type: SET_CONFIG,
-  config
+export const setConfig = level => ({
+  type: SET_LEVEL,
+  level
 })
 
 export const setGameState = status => ({

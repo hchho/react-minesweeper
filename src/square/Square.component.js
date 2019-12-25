@@ -26,7 +26,7 @@ const Square = ({
         }
       }
     }
-  }, [isRevealed, hasMine, adjacentMines]);
+  }, [isRevealed, hasMine, adjacentMines, column, row, revealSquare]);
 
   const handleClick = () => {
     if (isRevealed && !isGameRunning(gameStatus)) return undefined;
