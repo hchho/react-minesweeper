@@ -1,6 +1,7 @@
 import { INACTIVE_GAME_STATUS } from '../../utils'
 
 export const initialState = {
+  revealedSquares: [],
   mineMap: [],
   gameConfig: {
     size: {

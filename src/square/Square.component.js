@@ -1,8 +1,8 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import './Square.scss'
 import { isGameRunning } from '../utils'
 
-const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGame }, ref) => {
+const Square = ({ adjacentMines, endGame, hasMine, gameStatus, pauseGame }) => {
   const [isRevealed, setIsRevealed] = useState(false)
   const revealedClass = hasMine ? 'hasMine' : 'empty'
 
@@ -17,10 +17,6 @@ const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGam
     }
   }
 
-  useImperativeHandle(ref, () => ({
-    revealSquare: handleClick
-  }))
-
   const handleEndGame = () => {
     setTimeout(() => endGame(), 2000)
   }
@@ -28,7 +24,7 @@ const Square = ({ adjacentMines, endGame, hasMine, gameStatus, onClick, pauseGam
   return (
     <div
       className={`app-arena__square app-arena__square--${isRevealed ? revealedClass : 'hidden'}`}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>

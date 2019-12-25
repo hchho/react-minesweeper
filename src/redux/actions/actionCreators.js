@@ -1,7 +1,8 @@
 import {
   GENERATE_MINES,
   SET_CONFIG,
-  SET_GAME_STATE
+  SET_GAME_STATE,
+  REVEAL_SQUARE
 } from './actionTypes'
 
 export const setGameState = status => ({
@@ -12,6 +13,11 @@ export const setGameState = status => ({
 export const generateMines = mines => ({
   type: GENERATE_MINES,
   mines
+})
+
+export const revealSquare = square => ({
+  type: REVEAL_SQUARE,
+  square
 })
 
 export const setConfig = config => ({
