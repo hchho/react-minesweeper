@@ -32,13 +32,13 @@ const Square = ({
   }, [isRevealed, hasMine, adjacentMines, column, row, revealSquare, boardSize]);
 
   const handleLeftClick = () => {
-    if (isFlagged || isRevealed && !isGameRunning(gameStatus)) return undefined;
+    if (isFlagged || isRevealed || !isGameRunning(gameStatus)) return undefined;
 
     revealSquare(column, row);
 
     if (hasMine) {
       pauseGame();
-      handleEndGame();
+      setTimeout(() => endGame(), 2000);
     }
   };
 
@@ -46,10 +46,6 @@ const Square = ({
     e.preventDefault()
     setFlag(!isFlagged)
   }
-
-  const handleEndGame = () => {
-    setTimeout(() => endGame(), 2000);
-  };
 
   return (
     <div
