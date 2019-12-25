@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Square.scss";
 import { isGameRunning } from "../utils";
 
@@ -14,6 +14,19 @@ const Square = ({
   row
 }) => {
   const revealedClass = hasMine ? "hasMine" : "empty";
+
+  useEffect(() => {
+    // Reveal the squares around it
+    if (!adjacentMines && !hasMine && isRevealed) {
+      for (let i = column - 1; i <= column + 1; ++i) {
+        for (let j = row - 1; j <= row + 1; ++j) {
+          if (i >= 0 && j >= 0) {
+            revealSquare(i, j);
+          }
+        }
+      }
+    }
+  }, [isRevealed]);
 
   const handleClick = () => {
     if (isRevealed && !isGameRunning(gameStatus)) return undefined;

@@ -5,7 +5,7 @@ import Controller from './Controller.component'
 
 const DEFAULT_DIMENSIONS = 10
 
-const DEFAULT_MINES = 20
+const DEFAULT_MINES = 10
 
 const DEFAULT_TIME_IN_MS = 120000
 
