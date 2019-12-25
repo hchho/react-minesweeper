@@ -13,7 +13,9 @@ const createMineMap = config => {
   const mineMap = []
   let randomLocation = ''
   while (mineMap.length < config.mines) {
+    // eslint-disable-next-line
     randomLocation = generateRandomLocation(config.size.rows)
+    // eslint-disable-next-line
     if (!mineMap.find(elem => elem.x === randomLocation.x && elem.y === randomLocation.y)) {
       mineMap.push(randomLocation)
     }

@@ -22,11 +22,13 @@ const Row = ({ columns, mines = [], row }) => {
 };
 
 const Arena = ({
+  endGame,
   generateMines,
   gameConfig: {
     size: { rows, columns }
   },
   mines,
+  pauseGame,
   revealedSquares
 }) => {
   const countAdjacentMines = (xCoord, yCoord) => {
@@ -55,10 +57,12 @@ const Arena = ({
   }, [generateMines]);
 
   useEffect(() => {
-    if ((rows * columns - revealedSquares.length) === mines.length) {
-      alert("YOU DID IT")
+    if (rows * columns - revealedSquares.length === mines.length) {
+      pauseGame();
+      alert("YOU DID IT");
+      setTimeout(() => endGame(), 2000);
     }
-  }, [revealedSquares, mines.length, rows, columns]);
+  }, [columns, endGame, mines.length, pauseGame, revealedSquares, rows]);
 
   return (
     <div className="game-arena">

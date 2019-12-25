@@ -10,9 +10,8 @@ export const clearSquares = () => ({
   type: CLEAR_SQUARES
 })
 
-export const generateMines = mines => ({
+export const createMineMap = () => ({
   type: GENERATE_MINES,
-  mines
 })
 
 export const revealSquare = square => ({
