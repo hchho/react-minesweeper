@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setConfig, setGameState } from '../redux'
+import { clearSquares, setConfig, setGameState } from '../redux'
 import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from '../utils'
 import Controller from './Controller.component'
 
@@ -26,7 +26,10 @@ const mapDispatchToProps = dispatch => ({
     }
     dispatch(setConfig(config))
   },
-  endGame: () => dispatch(setGameState(INACTIVE_GAME_STATUS)),
+  endGame: () => {
+    dispatch(setGameState(INACTIVE_GAME_STATUS))
+    dispatch(clearSquares())
+  },
   startGame: () => dispatch(setGameState(ACTIVE_RUNNING_GAME_STATUS)),
 })
 
