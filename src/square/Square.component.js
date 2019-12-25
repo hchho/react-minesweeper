@@ -20,7 +20,7 @@ const Square = ({
     if (!adjacentMines && !hasMine && isRevealed) {
       for (let i = column - 1; i <= column + 1; ++i) {
         for (let j = row - 1; j <= row + 1; ++j) {
-          if (i >= 0 && j >= 0) {
+          if (i >= 0 && j >= 0 && i < 10 && j < 10) { // this should not be hardcoded
             revealSquare(i, j);
           }
         }

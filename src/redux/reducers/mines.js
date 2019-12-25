@@ -25,7 +25,6 @@ export const generateMines = (state, action) => {
   switch(action.type) {
     case GENERATE_MINES:
       return [
-        ...state.mineMap,
         ...createMineMap(state.gameConfig)
       ]
     default: 

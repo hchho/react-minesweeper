@@ -26,7 +26,8 @@ const Arena = ({
   gameConfig: {
     size: { rows, columns }
   },
-  mines
+  mines,
+  revealedSquares
 }) => {
   const countAdjacentMines = (xCoord, yCoord) => {
     let acc = 0;
@@ -52,6 +53,12 @@ const Arena = ({
   useEffect(() => {
     generateMines();
   }, [generateMines]);
+
+  useEffect(() => {
+    if ((rows * columns - revealedSquares.length) === mines.length) {
+      alert("YOU DID IT")
+    }
+  }, [revealedSquares, mines.length, rows, columns]);
 
   return (
     <div className="game-arena">

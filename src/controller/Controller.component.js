@@ -5,7 +5,7 @@ import "./Controller.scss"
 
 const InactiveController = ({ onChange, onClick }) => (
   <form>
-    <label for="level">
+    <label htmlFor="level">
       Difficulty level
       <select onChange={onChange}>
         <option value="1" defaultValue>

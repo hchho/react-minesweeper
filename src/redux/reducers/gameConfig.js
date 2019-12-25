@@ -21,7 +21,6 @@ export const setConfig = (gameConfig, action) => {
         timeLimit: DEFAULT_TIME_IN_MS * level
       }
       return {
-        ...action.config,
         ...config
       }
       default:
