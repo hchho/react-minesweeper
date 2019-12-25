@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Square.scss";
 import { isGameRunning, isWithinBounds } from "../utils";
 
@@ -14,6 +14,8 @@ const Square = ({
   revealSquare,
   row
 }) => {
+  const [isFlagged, setFlag] = useState(false)
+
   const revealedClass = hasMine ? "hasMine" : "empty";
 
   useEffect(() => {
@@ -29,8 +31,8 @@ const Square = ({
     }
   }, [isRevealed, hasMine, adjacentMines, column, row, revealSquare, boardSize]);
 
-  const handleClick = () => {
-    if (isRevealed && !isGameRunning(gameStatus)) return undefined;
+  const handleLeftClick = () => {
+    if (isFlagged || isRevealed && !isGameRunning(gameStatus)) return undefined;
 
     revealSquare(column, row);
 
@@ -40,6 +42,11 @@ const Square = ({
     }
   };
 
+  const handleRightClick = (e) => {
+    e.preventDefault()
+    setFlag(!isFlagged)
+  }
+
   const handleEndGame = () => {
     setTimeout(() => endGame(), 2000);
   };
@@ -47,9 +54,10 @@ const Square = ({
   return (
     <div
       className={`app-arena__square app-arena__square--${
-        isRevealed ? revealedClass : "hidden"
+        isRevealed ? revealedClass : isFlagged ? "flagged" : "hidden"
       }`}
-      onClick={handleClick}
+      onContextMenu={handleRightClick}
+      onClick={handleLeftClick}
     >
       {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>
