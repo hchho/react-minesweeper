@@ -1,5 +1,5 @@
-export const INACTIVE_GAME_STATUS = 'OFF'
+export const ACTIVE_RUNNING_GAME_STATUS = "ON";
 
-export const ACTIVE_RUNNING_GAME_STATUS = 'ON'
+export const ACTIVE_PAUSED_GAME_STATUS = "PAUSED";
 
-export const ACTIVE_PAUSED_GAME_STATUS = 'PAUSED'
+export const INACTIVE_GAME_STATUS = "OFF";
