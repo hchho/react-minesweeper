@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 }}
 
 const mapDispatchToProps = dispatch => ({
-  generateMines: () => dispatch({ type: GENERATE_MINES })
+  generateMines: () => dispatch({ type: GENERATE_MINES }),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Arena)

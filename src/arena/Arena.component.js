@@ -36,7 +36,7 @@ const Arena = ({ generateMines, gameConfig: { size: { rows, columns } }, mines }
   useEffect(() => { 
     generateMines() 
   }, [])
-
+  
   return (
     <div className="game-arena">
       {squares.map((elem, index) => <Row columns={elem} key={index} mines={mines} row={index} />)}

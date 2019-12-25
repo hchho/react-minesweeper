@@ -2,14 +2,13 @@ import React, { forwardRef, useState } from 'react'
 import './Square.scss'
 import { isGameRunning } from '../utils'
 
-const Square = ({ adjacentMines, endGame, hasMine, gameStatus, pauseGame }) => {
-  const [isRevealed, setIsRevealed] = useState(false)
+const Square = ({ adjacentMines, column, endGame, gameStatus, hasMine, isRevealed, pauseGame, revealSquare, row }) => {
   const revealedClass = hasMine ? 'hasMine' : 'empty'
 
   const handleClick = () => { 
     if (isRevealed && !isGameRunning(gameStatus)) return undefined
     
-    setIsRevealed(true) 
+    revealSquare(column, row)
     
     if (hasMine) {
       pauseGame()
