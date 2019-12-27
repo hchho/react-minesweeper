@@ -62,7 +62,7 @@ const Arena = ({
       pauseGame();
       completeGame();
     }
-  }, [columns, endGame, mines.length, pauseGame, revealedSquares, rows]);
+  }, [columns, completeGame, endGame, mines.length, pauseGame, revealedSquares, rows]);
 
   return (
     <div className="game-arena">

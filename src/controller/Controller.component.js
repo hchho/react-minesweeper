@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { isGameActive } from "../utils";
+import { isGameActive, isGameComplete } from "../utils";
 import { Timer } from "../timer";
-import "./Controller.scss"
+import "./Controller.scss";
+import { Modal } from "../modal";
 
 const InactiveController = ({ onChange, onClick }) => (
   <form>
@@ -19,7 +20,12 @@ const InactiveController = ({ onChange, onClick }) => (
   </form>
 );
 
-const Controller = ({ endGame, gameStatus, generateConfigWithLevel, startGame }) => {
+const Controller = ({
+  endGame,
+  gameStatus,
+  generateConfigWithLevel,
+  startGame
+}) => {
   const [level, setLevel] = useState("1");
   const onChange = event => {
     setLevel(event.target.value);
@@ -30,11 +36,14 @@ const Controller = ({ endGame, gameStatus, generateConfigWithLevel, startGame })
     startGame();
   };
 
-  return isGameActive(gameStatus) ? (
-    <div className='controller__active-container'>
-      <Timer endGame={endGame} />
-      <input type="button" value="Restart Game" onClick={endGame} />
-    </div>
+  return isGameActive(gameStatus) || isGameComplete(gameStatus) ? (
+    <>
+      <div className="controller__active-container">
+        <Timer endGame={endGame} />
+        <input type="button" value="Restart Game" onClick={endGame} />
+      </div>
+      {isGameComplete(gameStatus) && <Modal>asdf</Modal>}
+    </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />
   );
