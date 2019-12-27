@@ -4,6 +4,10 @@ import { Timer } from "../timer";
 import "./Controller.scss";
 import { Modal } from "../modal";
 
+const Child = () => (
+  <div className="child">HOLY SHIT</div>
+)
+
 const InactiveController = ({ onChange, onClick }) => (
   <form>
     <label htmlFor="level">
@@ -42,7 +46,7 @@ const Controller = ({
         <Timer endGame={endGame} />
         <input type="button" value="Restart Game" onClick={endGame} />
       </div>
-      {isGameComplete(gameStatus) && <Modal>asdf</Modal>}
+      {isGameComplete(gameStatus) && <Modal><Child /></Modal>}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />
