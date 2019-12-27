@@ -2,8 +2,8 @@ import React from 'react'
 
 import { FirebaseContext } from './context'
 
-export const withFirebase = InnerComponent => (
+export const FirebaseComponent = ({ InnerComponent, ...props }) => (
   <FirebaseContext.Consumer>
-    {firebase => <InnerComponent firebase={firebase} />}
+    {firebase => <InnerComponent {...{...props, firebase}} />}
   </FirebaseContext.Consumer>
 )

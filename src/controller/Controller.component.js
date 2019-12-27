@@ -3,10 +3,8 @@ import { isGameActive, isGameComplete } from "../utils";
 import { Timer } from "../timer";
 import "./Controller.scss";
 import { Modal } from "../modal";
-
-const Child = () => (
-  <div className="child">HOLY SHIT</div>
-)
+import { Leaderboard } from "../leaderboard";
+import { FirebaseComponent } from "../firebase";
 
 const InactiveController = ({ onChange, onClick }) => (
   <form>
@@ -24,13 +22,15 @@ const InactiveController = ({ onChange, onClick }) => (
   </form>
 );
 
-const Controller = ({
+const BaseController = ({
   endGame,
   gameStatus,
   generateConfigWithLevel,
   startGame
 }) => {
   const [level, setLevel] = useState("1");
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+
   const onChange = event => {
     setLevel(event.target.value);
   };
@@ -40,17 +40,32 @@ const Controller = ({
     startGame();
   };
 
+  const SubmitHighScoreBtn = () => (
+    <input
+      type="button"
+      value="Submit highscore"
+      onClick={() => setShowLeaderBoard(!showLeaderBoard)}
+    />
+  );
+
   return isGameActive(gameStatus) || isGameComplete(gameStatus) ? (
     <>
       <div className="controller__active-container">
         <Timer endGame={endGame} />
         <input type="button" value="Restart Game" onClick={endGame} />
+        {isGameComplete(gameStatus) && <SubmitHighScoreBtn />}
       </div>
-      {isGameComplete(gameStatus) && <Modal><Child /></Modal>}
+      {showLeaderBoard && (
+        <Modal>
+          <Leaderboard />
+        </Modal>
+      )}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />
   );
 };
 
-export default Controller;
+export const Controller = props => (
+  <FirebaseComponent InnerComponent={BaseController} {...props} />
+);
