@@ -17,7 +17,7 @@ export const setConfig = (gameConfig, action) => {
           rows: DEFAULT_DIMENSIONS * level,
           columns: DEFAULT_DIMENSIONS * level
         },
-        mines: DEFAULT_MINES * level,
+        mines: DEFAULT_DIMENSIONS * level * DEFAULT_DIMENSIONS * level / DEFAULT_MINES,
         timeLimit: DEFAULT_TIME_IN_MS * level
       }
       return {
