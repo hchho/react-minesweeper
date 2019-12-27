@@ -2,4 +2,6 @@ export const ACTIVE_RUNNING_GAME_STATUS = "ON";
 
 export const ACTIVE_PAUSED_GAME_STATUS = "PAUSED";
 
+export const COMPLETE_GAME_STATUS = "COMPLETE";
+
 export const INACTIVE_GAME_STATUS = "OFF";

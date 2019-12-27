@@ -22,6 +22,7 @@ const Row = ({ columns, mines = [], row }) => {
 };
 
 const Arena = ({
+  completeGame,
   endGame,
   generateMines,
   gameConfig: {
@@ -59,8 +60,7 @@ const Arena = ({
   useEffect(() => {
     if (rows * columns - revealedSquares.length === mines.length) {
       pauseGame();
-      alert("YOU DID IT");
-      setTimeout(() => endGame(), 2000);
+      completeGame();
     }
   }, [columns, endGame, mines.length, pauseGame, revealedSquares, rows]);
 

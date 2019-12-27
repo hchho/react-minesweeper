@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { clearSquares, revealSquare, setGameState } from "../redux";
 import Square from "./Square.component";
-import { INACTIVE_GAME_STATUS, ACTIVE_PAUSED_GAME_STATUS } from "../utils";
+import { ACTIVE_PAUSED_GAME_STATUS, INACTIVE_GAME_STATUS } from "../utils";
 
 const mapStateToProps = (state, ownProps) => ({
   gameStatus: state.gameState.status,
