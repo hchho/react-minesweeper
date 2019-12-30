@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { isGameActive, isGameComplete } from "../utils";
 import { Timer } from "../timer";
 import "./Controller.scss";
-import { Modal } from "../modal";
+import { Modal, ModalImpl } from "../modal";
 import { Leaderboard } from "../leaderboard";
 import { FirebaseComponent } from "../firebase";
 
@@ -55,11 +55,7 @@ const BaseController = ({
         <input type="button" value="Restart Game" onClick={endGame} />
         {isGameComplete(gameStatus) && <SubmitHighScoreBtn />}
       </div>
-      {showLeaderBoard && (
-        <Modal>
-          <Leaderboard />
-        </Modal>
-      )}
+      {showLeaderBoard && <ModalImpl InnerComponent={Leaderboard} />}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />
