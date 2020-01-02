@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Leaderboard.scss"
 
-export const Leaderboard = () => (
+export const Leaderboard = ({ firebase }) => {
+  return (
   <div className="leaderboard__container">
     <h3>Leaderboard</h3>
     <p>asdf</p>
@@ -13,4 +14,4 @@ export const Leaderboard = () => (
     <p>asdf</p>
     <p>asdf</p>
   </div>
-)
+)}

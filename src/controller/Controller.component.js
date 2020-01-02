@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { isGameActive, isGameComplete } from "../utils";
 import { Timer } from "../timer";
 import "./Controller.scss";
-import { Modal, ModalImpl } from "../modal";
+import { ModalImpl } from "../modal";
 import { Leaderboard } from "../leaderboard";
-import { FirebaseComponent } from "../firebase";
+import { withFirebase } from "../firebase";
 
 const InactiveController = ({ onChange, onClick }) => (
   <form>
@@ -62,6 +62,4 @@ const BaseController = ({
   );
 };
 
-export const Controller = props => (
-  <FirebaseComponent InnerComponent={BaseController} {...props} />
-);
+export const Controller = withFirebase(BaseController);
