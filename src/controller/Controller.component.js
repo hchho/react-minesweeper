@@ -24,6 +24,7 @@ const InactiveController = ({ onChange, onClick }) => (
 
 const BaseController = ({
   endGame,
+  firebase,
   gameStatus,
   generateConfigWithLevel,
   startGame
@@ -55,7 +56,7 @@ const BaseController = ({
         <input type="button" value="Restart Game" onClick={endGame} />
         {isGameComplete(gameStatus) && <SubmitHighScoreBtn />}
       </div>
-      {showLeaderBoard && <ModalImpl InnerComponent={Leaderboard} />}
+      {showLeaderBoard && <ModalImpl InnerComponent={Leaderboard} {...{ firebase }} />}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />

@@ -11,7 +11,7 @@ import * as serviceWorker from "./serviceWorker";
 const store = createStore(reducers);
 
 ReactDOM.render(
-  <FirebaseContext.Provider value={Firebase}>
+  <FirebaseContext.Provider value={new Firebase()}>
     <Provider store={store}>
       <App />
     </Provider>

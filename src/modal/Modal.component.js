@@ -21,10 +21,10 @@ export const Modal = ({ children }) => {
   return ReactDOM.createPortal(children, modalRoot);
 };
 
-export const ModalImpl = ({ InnerComponent }) => (
+export const ModalImpl = ({ InnerComponent, ...props }) => (
   <Modal>
     <div className="modal__container">
-      <InnerComponent />
+      <InnerComponent {...props} />
     </div>
   </Modal>
 );
