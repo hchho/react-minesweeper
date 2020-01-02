@@ -18,4 +18,6 @@ export class Firebase {
   }
 
   scores = () => this.db.ref("scores");
+
+  getAllScores = () => this.scores();
 }

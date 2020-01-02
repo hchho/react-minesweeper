@@ -3,7 +3,11 @@ import "./Leaderboard.scss"
 
 export const Leaderboard = ({ firebase }) => {
   useEffect(() => {
-    console.log(firebase.scores()) 
+    firebase.getAllScores().orderByChild("timeInMs").limitToFirst(10).once('value').then(snapshot => {
+      snapshot.forEach(data => {
+        console.log(data.val())
+      })
+    })
   }, [firebase])
   return (
   <div className="leaderboard__container">
@@ -16,5 +20,5 @@ export const Leaderboard = ({ firebase }) => {
     <p>asdf</p>
     <p>asdf</p>
     <p>asdf</p>
-  </div>
+  </div> 
 )}
