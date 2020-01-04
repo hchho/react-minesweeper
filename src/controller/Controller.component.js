@@ -46,6 +46,7 @@ const HighScoreForm = ({ handleSubmit }) => {
 const BaseController = ({
   endGame,
   firebase,
+  gameDifficulty,
   gameDuration,
   gameStatus,
   generateConfigWithLevel,
@@ -66,7 +67,7 @@ const BaseController = ({
   };
 
   const handleSubmit = username => {
-    firebase.postScore(username, gameDuration).then(() => {
+    firebase.postScore(username, gameDuration, gameDifficulty).then(() => {
       setShowHighscoreForm(!showHighscoreForm);
       setHasSubmitted(true);
     });

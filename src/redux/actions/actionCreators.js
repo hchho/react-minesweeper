@@ -2,6 +2,7 @@ import {
   CLEAR_SQUARES,
   GENERATE_MINES,
   REVEAL_SQUARE,
+  SET_GAME_DIFFICULTY,
   SET_GAME_DURATION,
   SET_GAME_STATE,
   SET_LEVEL
@@ -23,6 +24,11 @@ export const revealSquare = square => ({
 export const setConfig = level => ({
   type: SET_LEVEL,
   level
+});
+
+export const setGameDifficulty = difficulty => ({
+  type: SET_GAME_DIFFICULTY,
+  difficulty
 });
 
 export const setGameDuration = duration => ({
