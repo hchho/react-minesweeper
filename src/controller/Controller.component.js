@@ -22,6 +22,27 @@ const InactiveController = ({ onChange, onClick }) => (
   </form>
 );
 
+const HighScoreForm = ({ firebase }) => {
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = () => {
+    firebase.postScore(username, 0);
+  };
+
+  return (
+    <form>
+      <input
+        type="text"
+        placeholder="Your name"
+        onChange={e => {
+          setUsername(e.target.value);
+        }}
+      />
+      <input type="button" value="Enter" onClick={handleSubmit} />
+    </form>
+  );
+};
+
 const BaseController = ({
   endGame,
   firebase,
@@ -31,6 +52,7 @@ const BaseController = ({
 }) => {
   const [level, setLevel] = useState("1");
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const [showHighscoreForm, setShowHighscoreForm] = useState(false);
 
   const onChange = event => {
     setLevel(event.target.value);
@@ -45,7 +67,7 @@ const BaseController = ({
     <input
       type="button"
       value="Submit highscore"
-      onClick={() => setShowLeaderBoard(!showLeaderBoard)}
+      onClick={() => setShowHighscoreForm(!showHighscoreForm)}
     />
   );
 
@@ -56,7 +78,10 @@ const BaseController = ({
         <input type="button" value="Restart Game" onClick={endGame} />
         {isGameComplete(gameStatus) && <SubmitHighScoreBtn />}
       </div>
-      {showLeaderBoard && <ModalImpl InnerComponent={Leaderboard} {...{ firebase }} />}
+      {showHighscoreForm && <HighScoreForm firebase={firebase} />}
+      {showLeaderBoard && (
+        <ModalImpl InnerComponent={Leaderboard} {...{ firebase }} />
+      )}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />
