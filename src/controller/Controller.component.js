@@ -46,6 +46,7 @@ const HighScoreForm = ({ handleSubmit }) => {
 const BaseController = ({
   endGame,
   firebase,
+  gameDuration,
   gameStatus,
   generateConfigWithLevel,
   startGame
@@ -65,32 +66,34 @@ const BaseController = ({
   };
 
   const handleSubmit = username => {
-    firebase.postScore(username, 0).then(() => {
+    firebase.postScore(username, gameDuration).then(() => {
       setShowHighscoreForm(!showHighscoreForm);
       setHasSubmitted(true);
     });
   };
 
-  const SubmitHighScoreBtn = () => (
-    <input
-      type="button"
-      value="Submit highscore"
-      onClick={() => setShowHighscoreForm(!showHighscoreForm)}
-    />
-  );
-
-  const ShowLeaderboardBtn = () => (
-    <input
-      type="button"
-      value="Show leaderboard"
-      onClick={() => setShowLeaderBoard(!showLeaderBoard)}
-    />
-  );
-
   const GameEndComponent = () => (
     <>
-      <SubmitHighScoreBtn />
-      <ShowLeaderboardBtn />
+      <input
+        type="button"
+        value="Submit highscore"
+        onClick={() => setShowHighscoreForm(!showHighscoreForm)}
+      />
+      <input
+        type="button"
+        value="Show leaderboard"
+        onClick={() => setShowLeaderBoard(!showLeaderBoard)}
+      />
+      {!hasSubmitted && showHighscoreForm && (
+        <HighScoreForm handleSubmit={handleSubmit} />
+      )}
+      {showLeaderBoard && (
+        <ModalImpl
+          handleClose={() => setShowLeaderBoard(!showLeaderBoard)}
+          InnerComponent={Leaderboard}
+          {...{ firebase }}
+        />
+      )}
     </>
   );
 
@@ -101,12 +104,6 @@ const BaseController = ({
         <input type="button" value="Restart Game" onClick={endGame} />
         {isGameComplete(gameStatus) && <GameEndComponent />}
       </div>
-      {!hasSubmitted && showHighscoreForm && (
-        <HighScoreForm handleSubmit={handleSubmit} />
-      )}
-      {showLeaderBoard && (
-        <ModalImpl handleClose={() => setShowLeaderBoard(!showLeaderBoard)} InnerComponent={Leaderboard} {...{ firebase }} />
-      )}
     </>
   ) : (
     <InactiveController onChange={onChange} onClick={handleOnClick} />

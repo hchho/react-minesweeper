@@ -4,7 +4,8 @@ import { ACTIVE_RUNNING_GAME_STATUS, INACTIVE_GAME_STATUS } from "../utils";
 import { Controller } from "./Controller.component";
 
 const mapStateToProps = state => ({
-  gameStatus: state.gameState.status
+  gameStatus: state.gameState.status,
+  gameDuration: state.gameDuration
 });
 
 const mapDispatchToProps = dispatch => ({

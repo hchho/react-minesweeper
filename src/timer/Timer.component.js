@@ -6,12 +6,14 @@ const SECOND_IN_MS = 1000
 
 const DELAY_IN_MS = 10
 
-const Timer = ({ endGame, gameStatus, timeLimit }) => {
+const Timer = ({ dispatchGameDuration, endGame, gameStatus, timeLimit }) => {
   const [count, setCount] = useState(0)
 
   setTimeout(() => { 
     if (isGameActive(gameStatus) && !isGamePaused(gameStatus)) {
       setCount(count + DELAY_IN_MS) 
+    } else {
+      dispatchGameDuration(count / DELAY_IN_MS)
     }
   }, DELAY_IN_MS)
 

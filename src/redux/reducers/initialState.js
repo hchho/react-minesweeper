@@ -13,5 +13,6 @@ export const initialState = {
   },
   gameState: {
     status: INACTIVE_GAME_STATUS
-  }
+  },
+  gameDuration: 0
 }
