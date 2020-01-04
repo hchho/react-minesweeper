@@ -26,7 +26,7 @@ export const Leaderboard = ({ firebase }) => {
       <ol>
         {leaderboard.map(data => (
           <li key={data.timeInMs}>
-            {data.user}: {data.timeInMs}
+            {data.name}: {data.timeInMs}
           </li>
         ))}
       </ol>

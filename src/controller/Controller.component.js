@@ -22,12 +22,8 @@ const InactiveController = ({ onChange, onClick }) => (
   </form>
 );
 
-const HighScoreForm = ({ firebase }) => {
+const HighScoreForm = ({ handleSubmit }) => {
   const [username, setUsername] = useState("");
-
-  const handleSubmit = () => {
-    firebase.postScore(username, 0);
-  };
 
   return (
     <form>
@@ -38,7 +34,11 @@ const HighScoreForm = ({ firebase }) => {
           setUsername(e.target.value);
         }}
       />
-      <input type="button" value="Enter" onClick={handleSubmit} />
+      <input
+        type="button"
+        value="Enter"
+        onClick={() => handleSubmit(username)}
+      />
     </form>
   );
 };
@@ -53,6 +53,7 @@ const BaseController = ({
   const [level, setLevel] = useState("1");
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
   const [showHighscoreForm, setShowHighscoreForm] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const onChange = event => {
     setLevel(event.target.value);
@@ -63,6 +64,13 @@ const BaseController = ({
     startGame();
   };
 
+  const handleSubmit = username => {
+    firebase.postScore(username, 0).then(() => {
+      setShowHighscoreForm(!showHighscoreForm);
+      setHasSubmitted(true);
+    });
+  };
+
   const SubmitHighScoreBtn = () => (
     <input
       type="button"
@@ -71,16 +79,33 @@ const BaseController = ({
     />
   );
 
+  const ShowLeaderboardBtn = () => (
+    <input
+      type="button"
+      value="Show leaderboard"
+      onClick={() => setShowLeaderBoard(!showLeaderBoard)}
+    />
+  );
+
+  const GameEndComponent = () => (
+    <>
+      <SubmitHighScoreBtn />
+      <ShowLeaderboardBtn />
+    </>
+  );
+
   return isGameActive(gameStatus) || isGameComplete(gameStatus) ? (
     <>
       <div className="controller__active-container">
         <Timer endGame={endGame} />
         <input type="button" value="Restart Game" onClick={endGame} />
-        {isGameComplete(gameStatus) && <SubmitHighScoreBtn />}
+        {isGameComplete(gameStatus) && <GameEndComponent />}
       </div>
-      {showHighscoreForm && <HighScoreForm firebase={firebase} />}
+      {!hasSubmitted && showHighscoreForm && (
+        <HighScoreForm handleSubmit={handleSubmit} />
+      )}
       {showLeaderBoard && (
-        <ModalImpl InnerComponent={Leaderboard} {...{ firebase }} />
+        <ModalImpl handleClose={() => setShowLeaderBoard(!showLeaderBoard)} InnerComponent={Leaderboard} {...{ firebase }} />
       )}
     </>
   ) : (

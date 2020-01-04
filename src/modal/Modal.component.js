@@ -21,9 +21,9 @@ export const Modal = ({ children }) => {
   return ReactDOM.createPortal(children, modalRoot);
 };
 
-export const ModalImpl = ({ InnerComponent, ...props }) => (
+export const ModalImpl = ({ InnerComponent, handleClose, ...props }) => (
   <Modal>
-    <div className="modal__container">
+    <div className="modal__container" onClick={handleClose}>
       <InnerComponent {...props} />
     </div>
   </Modal>
