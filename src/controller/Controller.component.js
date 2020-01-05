@@ -55,7 +55,6 @@ const BaseController = ({
   const [level, setLevel] = useState("1");
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
   const [showHighscoreForm, setShowHighscoreForm] = useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const onChange = event => {
     setLevel(event.target.value);
@@ -69,7 +68,6 @@ const BaseController = ({
   const handleSubmit = username => {
     firebase.postScore(username, gameDuration, gameDifficulty).then(() => {
       setShowHighscoreForm(!showHighscoreForm);
-      setHasSubmitted(true);
     });
   };
 
@@ -85,7 +83,7 @@ const BaseController = ({
         value="Show leaderboard"
         onClick={() => setShowLeaderBoard(!showLeaderBoard)}
       />
-      {!hasSubmitted && showHighscoreForm && (
+      {showHighscoreForm && (
         <HighScoreForm handleSubmit={handleSubmit} />
       )}
       {showLeaderBoard && (
