@@ -31,8 +31,6 @@ const Square = ({
   }, [isRevealed, hasMine, adjacentMines, column, row, revealSquare, boardSize]);
 
   const handleLeftClick = () => {
-    if (isFlagged || isRevealed || !isGameRunning(gameStatus)) return undefined;
-
     revealSquare(column, row);
 
     if (hasMine) {

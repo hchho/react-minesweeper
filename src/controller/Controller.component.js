@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { isGameActive, isGameComplete } from "../utils";
 import { Timer } from "../timer";
 import "./Controller.scss";
@@ -18,7 +18,7 @@ const InactiveController = ({ onChange, onClick }) => (
         <option value="3">Hard</option>
       </select>
     </label>
-    <input type="button" value="Start" onClick={() => onClick()} />
+    <input type="button" value="Start" onClick={onClick} />
   </form>
 );
 
@@ -56,6 +56,12 @@ const BaseController = ({
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
   const [showHighscoreForm, setShowHighscoreForm] = useState(false);
 
+  useEffect(() => {
+    if (isGameComplete(gameStatus)) {
+      setLevel("1");
+    }
+  }, [gameStatus]);
+
   const onChange = event => {
     setLevel(event.target.value);
   };
@@ -71,6 +77,11 @@ const BaseController = ({
     });
   };
 
+  const handleEndGame = () => {
+    setLevel("1")
+    endGame()
+  }
+
   const GameEndComponent = () => (
     <>
       <input
@@ -83,9 +94,7 @@ const BaseController = ({
         value="Show leaderboard"
         onClick={() => setShowLeaderBoard(!showLeaderBoard)}
       />
-      {showHighscoreForm && (
-        <HighScoreForm handleSubmit={handleSubmit} />
-      )}
+      {showHighscoreForm && <HighScoreForm handleSubmit={handleSubmit} />}
       {showLeaderBoard && (
         <ModalImpl
           handleClose={() => setShowLeaderBoard(!showLeaderBoard)}
@@ -99,8 +108,8 @@ const BaseController = ({
   return isGameActive(gameStatus) || isGameComplete(gameStatus) ? (
     <>
       <div className="controller__active-container">
-        <Timer endGame={endGame} />
-        <input type="button" value="Restart Game" onClick={endGame} />
+        <Timer endGame={handleEndGame} />
+        <input type="button" value="Restart Game" onClick={handleEndGame} />
         {isGameComplete(gameStatus) && <GameEndComponent />}
       </div>
     </>
