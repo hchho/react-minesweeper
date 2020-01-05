@@ -17,19 +17,17 @@ export class Firebase {
     this.db = app.database();
   }
 
-  scores = () => this.db.ref("scores");
+  getScoresForDifficulty = difficulty => this.db.ref(`scores/${difficulty}`)
 
-  getAllScores = () => this.scores();
-
-  postScore = (username, score, difficulty) => {
-    const key = this.db
+  postScore = async (username, score, difficulty) => {
+    const key = await this.db
       .ref()
       .child("scores")
       .push().key;
     const updates = {};
-    updates["/scores/" + key] = Object.assign(
+    updates[`/scores/${difficulty}/${key}`] = Object.assign(
       {},
-      { name: username, timeInMs: score, difficulty }
+      { name: username, timeInMs: score }
     );
     return this.db.ref().update(updates);
   };

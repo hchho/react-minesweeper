@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { clearSquares, revealSquare, setGameState } from "../redux";
+import { revealSquare, setGameState } from "../redux";
 import Square from "./Square.component";
-import { ACTIVE_PAUSED_GAME_STATUS, INACTIVE_GAME_STATUS } from "../utils";
+import { ACTIVE_PAUSED_GAME_STATUS } from "../utils";
 
 const mapStateToProps = (state, ownProps) => ({
   gameStatus: state.gameState.status,
@@ -12,10 +12,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  endGame: () => {
-    dispatch(setGameState(INACTIVE_GAME_STATUS));
-    dispatch(clearSquares());
-  },
   pauseGame: () => dispatch(setGameState(ACTIVE_PAUSED_GAME_STATUS)),
   revealSquare: (x, y) => dispatch(revealSquare({ x, y }))
 });

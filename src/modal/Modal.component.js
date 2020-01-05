@@ -1,18 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useEffect } from "react";
-import "./Modal.scss"
+import "./Modal.scss";
 
 const modalRoot = document.getElementById("modal-root");
 
 export const Modal = ({ children }) => {
   useEffect(() => {
-    modalRoot.setAttribute("z-index", "1");
     modalRoot.style.width = "100%";
     modalRoot.style.height = "100%";
 
     return () => {
-      modalRoot.setAttribute("z-index", "-1");
       modalRoot.style.width = "0";
       modalRoot.style.height = "0";
     };
@@ -22,8 +20,11 @@ export const Modal = ({ children }) => {
 };
 
 export const ModalImpl = ({ InnerComponent, handleClose, ...props }) => (
-  <Modal>
-    <div className="modal__container" onClick={handleClose}>
+  <Modal handleClose={handleClose}>
+    <div className="modal__container">
+      <div className="modal__bar">
+        <span onClick={handleClose}>Close</span>
+      </div>
       <InnerComponent {...props} />
     </div>
   </Modal>

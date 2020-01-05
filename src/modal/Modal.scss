@@ -3,3 +3,10 @@
   padding: 2em;
   border-radius: 0.5em;
 }
+
+.modal__bar {
+  text-align: right;
+  span:hover {
+    cursor: pointer;
+  }
+}

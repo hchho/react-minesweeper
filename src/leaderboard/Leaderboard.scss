@@ -1,7 +1,16 @@
 .leaderboard__container {
-  z-index: 100;
   width: auto;
   text-align: center;
   color: red;
   background-color: blue($color: #000000);
+}
+
+.leaderboard__difficulty-container {
+  ul li {
+    display: inline;
+  }
+
+  li:hover {
+    cursor: pointer;
+  }
 }

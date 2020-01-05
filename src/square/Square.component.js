@@ -6,7 +6,6 @@ const Square = ({
   adjacentMines,
   boardSize,
   column,
-  endGame,
   gameStatus,
   hasMine,
   isRevealed,
@@ -38,7 +37,6 @@ const Square = ({
 
     if (hasMine) {
       pauseGame();
-      setTimeout(() => endGame(), 2000);
     }
   };
 
