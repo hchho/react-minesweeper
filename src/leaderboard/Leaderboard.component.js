@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Leaderboard.scss";
 
 export const Leaderboard = ({ firebase }) => {
-  const difficulties = [1, 2, 3];
+  const difficulties = ["Easy", "Medium", "Hard"];
   const [difficulty, setDifficulty] = useState(1);
   const [isFetching, setFetching] = useState(true);
   const [leaderboard, setLeaderboard] = useState([]);
@@ -28,12 +28,13 @@ export const Leaderboard = ({ firebase }) => {
       <h3>Leaderboard</h3>
       <div className="leaderboard__difficulty-container">
         <ul>
-          {difficulties.map(diff => (
+          {difficulties.map((diff, idx) => (
             <li
               onClick={() => {
-                setDifficulty(diff);
+                setDifficulty(idx + 1);
                 setLeaderboard([]);
               }}
+              className={`leaderboard__difficulty-list-item--${difficulty === idx + 1 ? 'active' : 'inactive'}`}
             >
               {diff}
             </li>

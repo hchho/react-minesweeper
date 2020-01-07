@@ -21,7 +21,7 @@ const Timer = ({ dispatchGameDuration, endGame, gameStatus, timeLimit }) => {
   
   return (
     <div className='timer--counter'>
-      {(count / SECOND_IN_MS).toFixed(2)}
+      {(count / SECOND_IN_MS).toFixed(2)} s
     </div>
   )
 }

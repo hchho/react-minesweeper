@@ -1,13 +1,27 @@
 .leaderboard__container {
   width: auto;
   text-align: center;
-  color: red;
+  color: black;
   background-color: blue($color: #000000);
+
+  ol li {
+    text-align: left;
+  }
 }
 
 .leaderboard__difficulty-container {
+  ul {
+    padding-inline-start: 0px;
+  }
+
   ul li {
     display: inline;
+    padding: 4px;
+  }
+
+  li.leaderboard__difficulty-list-item--active {
+    font-weight: bold;
+    text-decoration: underline;
   }
 
   li:hover {
