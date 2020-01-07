@@ -49,7 +49,7 @@ const Square = ({
         isRevealed ? revealedClass : isFlagged ? "flagged" : "hidden"
       }`}
       onContextMenu={handleRightClick}
-      onClick={!(isFlagged || isRevealed || !isGameRunning(gameStatus)) && handleLeftClick}
+      onClick={(isFlagged || isRevealed || !isGameRunning(gameStatus)) ? undefined : handleLeftClick}
     >
       {isRevealed && !hasMine && !!adjacentMines && adjacentMines}
     </div>
