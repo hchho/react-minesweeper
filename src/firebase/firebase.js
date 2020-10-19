@@ -26,10 +26,7 @@ export class Firebase {
       .child("scores")
       .push().key;
     const updates = {};
-    updates[`/scores/${difficulty}/${key}`] = Object.assign(
-      {},
-      { name: username, timeInMs: score }
-    );
+    updates[`/scores/${difficulty}/${key}`] = { name: username, timeInMs: score }
     return this.db.ref().update(updates);
   };
 }

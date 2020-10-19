@@ -23,7 +23,7 @@ export const setConfig = (gameConfig, action) => {
       return {
         ...config
       }
-      default:
-        return gameConfig
+    default:
+      return gameConfig
   }
 }
