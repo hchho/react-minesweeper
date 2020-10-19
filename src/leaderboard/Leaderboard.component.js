@@ -3,13 +3,13 @@ import "./Leaderboard.scss";
 
 export const Leaderboard = ({ firebase }) => {
   const difficulties = ["Easy", "Medium", "Hard"];
-  const [difficulty, setDifficulty] = useState(1);
+  const [difficulty, setDifficulty] = useState(0);
   const [isFetching, setFetching] = useState(true);
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
     firebase
-      .getScoresForDifficulty(difficulty)
+      .getScoresForDifficulty(difficulty + 1)
       .orderByChild("timeInMs")
       .limitToFirst(10)
       .once("value")
@@ -31,10 +31,10 @@ export const Leaderboard = ({ firebase }) => {
           {difficulties.map((diff, idx) => (
             <li
               onClick={() => {
-                setDifficulty(idx + 1);
                 setLeaderboard([]);
+                setDifficulty(idx);
               }}
-              className={`leaderboard__difficulty-list-item--${difficulty === idx + 1 ? 'active' : 'inactive'}`}
+              className={`leaderboard__difficulty-list-item--${difficulty === idx ? 'active' : 'inactive'}`}
             >
               {diff}
             </li>

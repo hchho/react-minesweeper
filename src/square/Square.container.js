@@ -3,11 +3,12 @@ import { revealSquare, setGameState } from "../redux";
 import Square from "./Square.component";
 import { ACTIVE_PAUSED_GAME_STATUS } from "../utils";
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, { column, row }) => ({
   gameStatus: state.gameState.status,
-  isRevealed: !!state.revealedSquares.find(
-    val => val.x === ownProps.column && val.y === ownProps.row
-  ),
+  // isRevealed: !!state.revealedSquares.find(
+  //   val => val.x === ownProps.column && val.y === ownProps.row
+  // ),
+  isRevealed: state.revealedSquares.has(`X${column}Y${row}`),
   boardSize: state.gameConfig.size.rows
 });
 
